@@ -191,3 +191,10 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+### Others
+
+node/entries/pages/
+node/output/pages/
+!node/entries/pages/.keep
+!node/output/pages/.keep
+
