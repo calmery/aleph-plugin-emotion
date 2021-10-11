@@ -24,6 +24,7 @@
     "commitizen": "4.2.4",
     "cz-conventional-changelog": "3.3.0",
     "husky": "7.0.2",
+    "lint-staged": "11.2.3",
     "semantic-release": "18.0.0"
   },
   "engines": {
@@ -36,6 +37,10 @@
   ],
   "homepage": "https://github.com/calmery-chan/aleph-plugin-emotion#readme",
   "license": "MIT",
+  "lint-staged": {
+    "*.{json,md}": "vr fmt",
+    "*.{ts,tsx}": ["vr lint", "vr fmt"]
+  },
   "main": "./node/index.js",
   "name": "@calmery-chan/aleph-plugin-emotion",
   "packageManager": "npm@^8.0.0",
