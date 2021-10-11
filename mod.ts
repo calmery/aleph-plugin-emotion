@@ -1,5 +1,6 @@
 import type { Plugin } from "https://deno.land/x/aleph@v0.3.0-beta.19/types.d.ts";
 import type { RequiredConfig } from "https://deno.land/x/aleph@v0.3.0-beta.19/server/config.ts";
+import * as colors from "https://deno.land/std@0.110.0/fmt/colors.ts";
 import * as path from "https://deno.land/std@0.110.0/path/mod.ts";
 
 // Types
@@ -16,6 +17,10 @@ const nodeDir = path.resolve(baseDir, "./node/");
 const styles: { [key: string]: string } = {};
 
 // Helper Functions
+
+const log = (...messages: string[]) => {
+  console.log(colors.magenta("Emotion"), ...messages);
+};
 
 const webpack = (aleph: Aleph, options: {
   watch: boolean;
@@ -66,16 +71,19 @@ export default <Plugin> {
       styles[specifier] = css;
     });
 
-    aleph.onRender(({ html }) => {
+    aleph.onRender(({ html, path }) => {
       html.head.push(
         `<style data-emotion>${Object.values(styles).join("")}</style>`,
       );
+
+      log("render", path);
     });
 
     // In development mode
 
     if (aleph.mode === "development") {
       webpack(aleph, { watch: true });
+      log("start watching code changes...");
     }
   },
 };
