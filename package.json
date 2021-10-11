@@ -16,6 +16,7 @@
     "node": "^16.11.0",
     "npm": "^8.0.0"
   },
+  "main": "./node/index.js",
   "name": "@calmery-chan/aleph-plugin-emotion",
   "packageManager": "npm@^8.0.0",
   "version": "0.0.0"
