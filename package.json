@@ -1,4 +1,9 @@
 {
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
   "dependencies": {
     "@babel/core": "7.15.8",
     "@babel/preset-react": "7.14.5",
@@ -12,6 +17,12 @@
     "webpack": "5.58.1",
     "webpack-cli": "4.9.0"
   },
+  "devDependencies": {
+    "commitizen": "4.2.4",
+    "cz-conventional-changelog": "3.3.0",
+    "husky": "7.0.2",
+    "semantic-release": "18.0.0"
+  },
   "engines": {
     "node": "^16.11.0",
     "npm": "^8.0.0"
@@ -23,5 +34,8 @@
   "main": "./node/index.js",
   "name": "@calmery-chan/aleph-plugin-emotion",
   "packageManager": "npm@^8.0.0",
+  "scripts": {
+    "prepare": "husky install"
+  },
   "version": "0.0.0"
 }
