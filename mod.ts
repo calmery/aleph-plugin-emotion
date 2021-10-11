@@ -8,7 +8,7 @@ type Aleph = Parameters<Plugin["setup"]>[0] & { config: RequiredConfig };
 
 // Constants
 
-const baseDir = path.resolve(new URL(".", import.meta.url).pathname, "../");
+const baseDir = new URL(".", import.meta.url).pathname;
 const nodeDir = path.resolve(baseDir, "./node/");
 
 // State
