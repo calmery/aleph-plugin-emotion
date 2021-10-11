@@ -63,8 +63,6 @@ export default <Plugin> {
         }).output(),
       );
 
-      console.log(css);
-
       styles[specifier] = css;
     });
 
