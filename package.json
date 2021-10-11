@@ -38,8 +38,7 @@
   "homepage": "https://github.com/calmery-chan/aleph-plugin-emotion#readme",
   "license": "MIT",
   "lint-staged": {
-    "*.{json,md}": "vr fmt",
-    "*.{ts,tsx}": ["vr lint", "vr fmt"]
+    "**/*.{json,md,ts,tsx}": "vr fmt"
   },
   "main": "./node/index.js",
   "name": "@calmery-chan/aleph-plugin-emotion",

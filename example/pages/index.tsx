@@ -7,5 +7,9 @@ const container = css`
 `;
 
 export default () => {
-  return <div className={container}>Hello World</div>;
+  return (
+    <div className={container}>
+      Hello World
+    </div>
+  );
 };
