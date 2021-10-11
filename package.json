@@ -18,6 +18,7 @@
     "webpack-cli": "4.9.0"
   },
   "devDependencies": {
+    "@semantic-release/git": "10.0.0",
     "commitizen": "4.2.4",
     "cz-conventional-changelog": "3.3.0",
     "husky": "7.0.2",
@@ -35,7 +36,9 @@
   "name": "@calmery-chan/aleph-plugin-emotion",
   "packageManager": "npm@^8.0.0",
   "release": {
-    "branches": ["main"],
+    "branches": [
+      "main"
+    ],
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
