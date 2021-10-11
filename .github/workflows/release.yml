@@ -11,6 +11,7 @@ jobs:
         with:
           node-version: "16.11.0"
       - run: "deno install -qAn vr https://deno.land/x/velociraptor@1.2.0/cli.ts"
+      - run: "rm -rf .husky"
       - run: "npm ci"
       - env:
           GIT_AUTHOR_EMAIL: 12670155+calmery@users.noreply.github.com
