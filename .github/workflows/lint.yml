@@ -1,0 +1,16 @@
+jobs:
+  lint:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.14.3
+      - run: "deno lint --config ./deno.json"
+
+name: "Lint"
+
+on:
+  push:
+    branches-ignore:
+      - main
