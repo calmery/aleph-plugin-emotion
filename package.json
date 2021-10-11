@@ -29,8 +29,8 @@
     "npm": "^8.0.0"
   },
   "files": [
-    "./node/",
-    "./mod.ts"
+    "mod.ts",
+    "node"
   ],
   "main": "./node/index.js",
   "name": "@calmery-chan/aleph-plugin-emotion",
