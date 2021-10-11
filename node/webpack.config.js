@@ -13,9 +13,7 @@ const workingDir = process.env._ALEPH_PLUGIN_EMOTION_WORKING_DIRECTORY;
 // Helper Functions
 
 const getAliases = () => {
-  const { imports } = require(
-    path.resolve(workingDir, "./import_map.json"),
-  );
+  const { imports } = require(path.resolve(workingDir, "./import_map.json"));
 
   // TODO: `aleph/` など、最後が `/` で終わるパスの解決ができない
   return Object.keys(imports)
@@ -27,30 +25,51 @@ const getAliases = () => {
 };
 
 const getEntries = () => {
+  const appPath = path.resolve(sourceDir, "./app.tsx");
   const pages = glob.sync(path.resolve(sourceDir, "./pages/**/*.tsx"));
 
-  return pages.map((pageFilePath) => {
-    const relativeFilePath = path.relative(sourceDir, pageFilePath);
-    const entryFilePath = `${path.resolve(entryDir, relativeFilePath)}.js`;
+  // Codes
 
-    fs.writeFileSync(
-      entryFilePath,
-      `
-const { extractCritical } = require("@emotion/server");
-const React = require("react");
-const { renderToString } = require("react-dom/server");
-const { default: Component } = require("${pageFilePath}");
+  const withCustomApp = `
+const { default: App } = require("${appPath}");
 
+console.log(
+  extractCritical(
+    renderToString(
+      React.createElement(App, { pageProps: {}, Page: Component }),
+    ),
+  ).css,
+);
+  `;
+
+  const withoutCustomApp = `
 console.log(
   extractCritical(
     renderToString(React.createElement(Component)),
   ).css,
 );
-      `,
-    );
+  `;
 
-    return { [relativeFilePath]: entryFilePath };
-  }).reduce((entries, entry) => ({ ...entries, ...entry }), {});
+  //
+
+  return pages
+    .map((pageFilePath) => {
+      const relativeFilePath = path.relative(sourceDir, pageFilePath);
+      const entryFilePath = `${path.resolve(entryDir, relativeFilePath)}.js`;
+
+      fs.writeFileSync(
+        entryFilePath,
+        `
+const { extractCritical } = require("@emotion/server");
+const React = require("react");
+const { renderToString } = require("react-dom/server");
+const { default: Component } = require("${pageFilePath}");
+        ` + (fs.existsSync(appPath) ? withCustomApp : withoutCustomApp)
+      );
+
+      return { [relativeFilePath]: entryFilePath };
+    })
+    .reduce((entries, entry) => ({ ...entries, ...entry }), {});
 };
 
 // Configuration
