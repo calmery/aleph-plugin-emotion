@@ -28,14 +28,20 @@ $ npm i @calmery-chan/aleph-plugin-emotion
 // aleph.config.ts
 
 import type { Config } from "https://deno.land/x/aleph@v0.3.0-beta.19/types.d.ts";
-import emotion from "./node_modules/@calmery-chan/aleph-plugin-emotion/mod.ts";
+import emotion from "./node_modules/@calmery-chan/aleph-plugin-emotion/plugin.ts";
 
 export default <Config> {
   plugins: [emotion],
 };
 ```
 
-Internally, the React component is compiled using Babel, and then the CSS is extracted using the `extractCritical` function in [@emotion/server](https://www.npmjs.com/package/@emotion/server). Therefore, if you import the npm package directly from [esm.sh](https://esm.sh/), etc., it will fail to compile using Babel. Use [import_map.json](https://alephjs.org/docs/basic-features/import-maps) and add the npm package using `npm install`.
+Internally, the React component is compiled using Babel, and then the CSS is
+extracted using the `extractCritical` function in
+[@emotion/server](https://www.npmjs.com/package/@emotion/server). Therefore, if
+you import the npm package directly from [esm.sh](https://esm.sh/), etc., it
+will fail to compile using Babel. Use
+[import_map.json](https://alephjs.org/docs/basic-features/import-maps) and add
+the npm package using `npm install`.
 
 ```json
 // import_map.json

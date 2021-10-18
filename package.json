@@ -32,8 +32,8 @@
     "npm": "^8.0.0"
   },
   "files": [
-    "mod.ts",
-    "node"
+    "node",
+    "plugin.ts"
   ],
   "homepage": "https://github.com/calmery-chan/aleph-plugin-emotion#readme",
   "license": "MIT",
